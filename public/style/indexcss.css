@@ -33,6 +33,7 @@ background-color: grey;;
 }
 .crt{
     box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    min-height: 260px;
 }
 /* #prodimg{
     width: 100%;
