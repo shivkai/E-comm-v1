@@ -1,0 +1,33 @@
+<%-include('../partials/navbar.ejs')%>
+<%-include('../partials/header.ejs')%>
+
+<div class="container crt mt-2 mb-2">
+    
+    <h1 class="text-center">My Cart</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <%for(let item of user.cart){%>
+                <div class="card mx-auto mb-2">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="<%=item.img%>" alt="item" class="img-fluid " style="height: 150px;width: 100%;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-tittle">
+                                    <%=item.name%>
+                                </h5>
+                                <form action="/cart/<%=item.id%>/remove?_method=DELETE" method="post">
+                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+        </div>
+    </div>
+</div>
+
+
+<%-include('../partials/footer.ejs')%>

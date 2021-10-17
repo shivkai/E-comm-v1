@@ -1,0 +1,25 @@
+<%-include('./partials/header')%>
+<%-include('./partials/navbar')%>
+<div class="seprater" style="height: 14px;background-color: black;z-index: 2;"></div>
+<%-include('./partials/flash.ejs')%>
+<%-include('./partials/carousel')%>
+<div class="seprater" style="height: 14px;background-color: black;z-index: 2;"></div>
+
+<div class="container" >
+    <div class="row" >
+        <% for(let product of products){%>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card mx-auto mb-2">
+              <div class="card-header"><%=product.name%></div>
+              <div style="width:100%;height:250px"><img id="prodimg" src="<%=product.img%>" class="card-img-top" style=" height: 100%;" alt="...">
+              </div > <div class="card-body bg-grey">
+                  <button class="btn btn-outline-primary"><a href="/home/<%=product.id%>" class="text-light">See More</a></button>
+                </div>
+              </div>
+              
+        </div>
+        <%}%>
+    </div>
+</div>
+<!-- style="margin-top: -220px;z-index: 3;width: 100vw;" -->
+<%-include('./partials/footer')%>

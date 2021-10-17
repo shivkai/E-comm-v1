@@ -1,0 +1,59 @@
+<%-include('../partials/navbar')%>
+<%-include('../partials/header')%>
+
+<main class="container mx-auto mb-3">
+  <%-include('../partials/flash.ejs')%>
+<div class="row mt-2">
+
+<div class="col-lg-4 ">
+    <div class="card mx-auto">
+      <div class="card-header"><%=reqProduct.name%></div>
+     <div style="width: 100%;height: 350px;"> <img id="prodimg" src="<%=reqProduct.img%>" style="width: 100%;height: 100%;" class="card-img-top" alt="...">
+     </div><p><%=reqProduct.desc%></p> 
+     <div class="buttons" style="margin-left: 30px;">
+    <button class="btn btn-outline-warning btn-sm"><a href="/home/<%=reqProduct.id%>/edit">Edit</a></button>
+    
+    <form id="ss" action="/cart/<%=reqProduct._id%>/add" method="POST">
+    <button class="btn btn-outline-info btn-sm" type="submit" id="addtocart"> Add to cart</button>
+  </form>
+
+    <form id="ss" action="/home/<%=reqProduct.id%>?_method=DELETE" method="POST">
+    <button class="btn btn-outline-danger btn-sm" id="delete"> Delete</button>
+  </form>
+
+
+</div>
+  </div>
+  </div>
+
+  <div class="col-lg-5 mx-auto">
+    <h1>Leave a Review</h1>
+      <form action="/home/<%=reqProduct.id%>/review" method="POST">
+          <div>
+            <label class="form-label" for="rating">Rating</label>
+            <input class="form-control" type="range" name="rating" id="rating" min="0" max="5">
+          </div>
+          <div>
+            <label class="form-label" for="comment">Comment</label>
+            <textarea class="form-control" name="comment" id="comment"row="3" cols="5"></textarea>
+          </div>
+          <button class="btn btn-sm btn-success mt-2">Submit</button>
+      </form>
+      
+      <div>
+        <div >
+          <%for(let review of reqProduct.reviews){%>
+            <div class="card mx-auto">
+              <div class="card-body">
+                <h4 class="card-tittle">Review: <%=review.rating%></h4>
+                <p class="card-text">Comment: <%=review.comment%></p>
+              </div>
+            </div>
+            <%}%>
+          </div>
+        </div>
+      </div>
+  
+</div>
+</main>
+<%-include('../partials/footer.ejs')%>
