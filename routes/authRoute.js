@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../modules/user');
 const passport = require('passport');
 
-router.use(express.urlencoded({extended:true}));
+
 // signup route
 router.get('/signup',(req, res)=>{
     res.render('auth/signup');
