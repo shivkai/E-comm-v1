@@ -262,3 +262,33 @@ fieldset.scheduler-border {
         margin-top: 3px;
     }
 }
+
+/* // */
+.class-list{
+    list-style: none;
+    
+}
+.list-item{
+    padding:5px;
+    border:2px solid black;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+.total{
+    width:150px;
+    padding:5px;
+    border:2px solid green;
+    border-radius: 4px;
+    margin-top:4px;
+    display: inline-block;
+}
+.imm{
+    width:60%;
+    margin-left: 150px;
+}
+@media screen and (max-width:850px) {
+    .imm{
+        width:100%;
+        margin-left:4px;
+    }
+}

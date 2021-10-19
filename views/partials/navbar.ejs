@@ -11,14 +11,19 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home">Home</a>
           </li>
+      
           <%if(currentUser){%>
+            <%if(currentUser.category=="seller"){%>
           <li class="nav-item">
             <a class="nav-link" href="/home/new">New</a>
           </li>
+          <%}%>
           <li class="nav-item">
             <a class="nav-link " href="/landing#self">About</a>
           </li>
         </ul>
+        
+        <p class="mx-auto" style="color: aliceblue;">Welcome Back <span class="text-uppercase" style="font-weight: bold;"><%=currentUser.username%></span></p>
         
         <ul class="navbar-nav d-flex mx-2"><li class="cart" style="color: white;font-size: 18px;"><a href="/user/cart"><i class="fas fa-shopping-cart"></i></a></li></ul>
         <form class="d-flex" action="/logout" method="GET">

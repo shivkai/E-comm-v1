@@ -10,14 +10,15 @@ router.get('/signup',(req, res)=>{
 });
 
 router.post('/signup',async(req, res)=>{
-    const {username,email,password} = req.body;
+    const {username,email,password,category} = req.body;
     // const fff = req.body;
 // console.log(fff);
 // res.redirect('/signup');
 
     const user = new User({
         username:username,
-        email:email
+        email:email,
+        category:category
     });
      
     await User.register(user,password);

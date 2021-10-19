@@ -5,6 +5,7 @@
     
     <h1 class="text-center">My Cart</h1>
     <div class="row">
+        <%let totalCost = 0;let name="";let price=0%>
         <div class="col-lg-6">
             <%for(let item of user.cart){%>
                 <div class="card mx-auto mb-2">
@@ -17,6 +18,8 @@
                                 <h5 class="card-tittle">
                                     <%=item.name%>
                                 </h5>
+                                <%totalCost+=item.price; %>
+                                <h6 class="font-weight-light">Price: &#8377; <%=item.price%></h6>
                                 <form action="/cart/<%=item.id%>/remove?_method=DELETE" method="post">
                                     <button class="btn btn-danger btn-sm">Remove</button>
                                 </form>
@@ -25,7 +28,17 @@
                     </div>
                 </div>
                 <%}%>
-        </div>
+            </div>
+            <div class="col-lg-6">
+                <ul class="class-list">
+                    <%for(let item of user.cart){%>
+                    <li class="list-item"><p><%=item.name%> : &#8377; <%=item.price%></p></li>
+                    <%}%>
+                    <li class="total"><strong>Total:<u> &#8377; <%=totalCost%></u></strong></li>
+                    <a><button class="btn btn-sm btn-outline-success">Buy Now</button></a>
+                    
+                </ul>
+            </div>
     </div>
 </div>
 

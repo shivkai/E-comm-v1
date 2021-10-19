@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
         trim:true,
         unique:true
     },
+    category:{
+        type:String,
+        required:true,
+        trim:true
+    },
     cart:[
         {
             type:mongoose.Schema.Types.ObjectId,

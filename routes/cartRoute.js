@@ -16,7 +16,7 @@ router.get('/landing',(req,res)=>{
     res.render('landing');
 })
 
-router.post('/cart/:productid/add',async(req, res) => {
+router.post('/cart/:productid/add',isLogged,async(req, res) => {
     
     const { productid } = req.params;
    
@@ -55,7 +55,7 @@ router.get('/user/cart',isLogged,async(req,res)=>{
 //     res.redirect(`/home/${id}`);
 // });
 
-router.delete('/cart/:id/remove',async(req,res)=>{
+router.delete('/cart/:id/remove',isLogged,async(req,res)=>{
     const productId = req.params.id;
     const userId = req.user._id;
    await User.findByIdAndUpdate(userId,{$pull:{cart:productId}});

@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../modules/product');
 const Review = require('../modules/review');
+const {isLogged} = require('../middleWare');
 
 
-
-
+try{
 //home route
-router.get('/home',async(req,res)=>{
+router.get('/home',isLogged,async(req,res)=>{
     try{
         const products = await Product.find({});
     res.render('home',{products});
@@ -20,7 +20,7 @@ catch(e){
 });
 
 //new route
-router.get('/home/new',(req,res)=>{
+router.get('/home/new',isLogged,(req,res)=>{
     res.render('product/new');
 })
 router.post('/home',async(req,res)=>{
@@ -38,7 +38,7 @@ router.post('/home',async(req,res)=>{
 })
 
 // show route
-router.get('/home/:id',async(req,res)=>{
+router.get('/home/:id',isLogged,async(req,res)=>{
     try{
         const {id}=req.params;
         const reqProduct = await Product.findById(id).populate('reviews');
@@ -58,7 +58,7 @@ router.get('/home/:id',async(req,res)=>{
 
 // edit route
 
-router.get('/home/:id/edit',async(req,res)=>{
+router.get('/home/:id/edit',isLogged,async(req,res)=>{
     try{
         const {id} = req.params;
         const product = await Product.findById(id);
@@ -70,7 +70,7 @@ router.get('/home/:id/edit',async(req,res)=>{
     }
 });
 
-router.patch('/home/:id/edit',async(req,res)=>{
+router.patch('/home/:id/edit',isLogged,async(req,res)=>{
     try{
         const {id} = req.params;
         const updatedCont = req.body;
@@ -87,7 +87,7 @@ router.patch('/home/:id/edit',async(req,res)=>{
 })
 
 // delete route
-router.delete('/home/:id',async(req,res)=>{
+router.delete('/home/:id',isLogged,async(req,res)=>{
     try{
         const {id} = req.params;
        await Product.findByIdAndDelete(id);
@@ -102,7 +102,7 @@ router.delete('/home/:id',async(req,res)=>{
 
 // review route
 
-router.post('/home/:id/review',async(req,res)=>{
+router.post('/home/:id/review',isLogged,async(req,res)=>{
     try{
         const {id} = req.params;
         const product = await Product.findById(id);
@@ -123,5 +123,10 @@ router.post('/home/:id/review',async(req,res)=>{
         res.redirect('/error');
     }
 })
+}
+catch(e){
 
+    req.flash('error','Something went wrong');
+    res.redirect('/error');
+}
 module.exports = router;
